@@ -10,21 +10,23 @@ import 'constants/constants.dart';
 import 'constants/themes.dart';
 import 'cubits/bloc_observer.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []) ;
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
   await CacheHelper.init();
   Bloc.observer = MyBlocObserver();
   uId = await CacheHelper.getData(key: 'uId');
   widthWithNoNotch = CacheHelper.getData(key: 'widthWithNoNotch');
 
-  if(uId != null){
+  if (uId != null) {
     SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft]);
-  }else{
+  } else {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   }
   await Firebase.initializeApp();
-  runApp(MyApp(appRouter: AppRouter(),));
+  runApp(MyApp(
+    appRouter: AppRouter(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -103,4 +105,3 @@ class _MainAppState extends State<MainApp> with WidgetsBindingObserver{
     super.dispose();
   }
 }*/
-
